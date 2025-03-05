@@ -76,3 +76,12 @@
     text-decoration: underline;
   }
   
+  /* 🔹 Mensaje de error */
+.error-message {
+    background: rgba(255, 0, 0, 0.2);
+    color: #FF4D4D;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
