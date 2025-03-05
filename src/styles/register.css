@@ -1,0 +1,78 @@
+/* 🔹 Contenedor Principal */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #121212; /* Fondo oscuro */
+  }
+  
+  /* 🔹 Caja de Registro */
+  .register-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    width: 400px;
+  }
+  
+  /* 🔹 Título */
+  .register-box h2 {
+    font-size: 2rem;
+    color: #FFD700;
+    margin-bottom: 20px;
+  }
+  
+  /* 🔹 Inputs */
+  .register-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+  }
+  
+  .register-box input::placeholder {
+    color: #ddd;
+  }
+  
+  /* 🔹 Botón */
+  .register-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #121212;
+    background: #FFD700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .register-box button:hover {
+    background: #FFC107;
+    transform: scale(1.05);
+  }
+  
+  /* 🔹 Enlace */
+  .register-box p {
+    margin-top: 15px;
+    color: #BBBBBB;
+  }
+  
+  .register-box a {
+    color: #FFD700;
+    text-decoration: none;
+  }
+  
+  .register-box a:hover {
+    text-decoration: underline;
+  }
+  
