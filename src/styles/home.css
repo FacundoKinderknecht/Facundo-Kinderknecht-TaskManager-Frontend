@@ -1,0 +1,83 @@
+/* 🔹 Contenedor principal del Home */
+.home-container {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  /* 🔹 Sección principal (hero) con efecto translúcido */
+  .hero {
+    background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Difumina el fondo */
+    color: white;
+    padding: 80px 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+  
+  /* 🔹 Sección de funcionalidades con tarjetas translúcidas */
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .feature-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.3);
+  }
+  
+  .feature-card h2 {
+    color: #ffffff;
+    font-size: 1.6rem;
+  }
+  
+  /* 🔹 Sección de llamada a la acción */
+  .cta {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 50px 20px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .cta h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  
+  .cta p {
+    font-size: 1.2rem;
+  }
+  
