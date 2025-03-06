@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../styles/login.css";
+import "../styles/auth.css";
+import Layout from "../components/Layout";
 import { loginUser } from "../services/auth";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -19,8 +19,8 @@ const Login = () => {
 
         try {
             const data = await loginUser(formData);
-            localStorage.setItem("token", data.token); // Guardar token
-            navigate("/dashboard"); // Redirigir al dashboard
+            localStorage.setItem("token", data.token);
+            navigate("/dashboard");
         } catch (err) {
             setError(err.message || "Error al iniciar sesión.");
         }
@@ -28,8 +28,8 @@ const Login = () => {
 
     return (
         <Layout>
-            <div className="login-container">
-                <div className="login-box">
+            <div className="auth-container">
+                <div className="auth-box">
                     <h2>Iniciar Sesión</h2>
                     {error && <p className="error-message">{error}</p>}
                     <form onSubmit={handleSubmit}>

@@ -1,40 +1,57 @@
 import React from "react";
-import Layout from "../components/Layout";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 const Home = () => {
-  return (
-    <Layout>
-      <div className="home-container">
-        {/* 🔹 Sección Hero */}
-        <section className="hero">
-          <h1>Organiza tus Tareas de Forma Eficiente</h1>
-          <p>Con TaskManager, aumenta tu productividad y nunca olvides una tarea importante.</p>
-          <Link to="/register" className="cta-button">¡Comienza Ahora!</Link>
-        </section>
+    return (
+        <Layout>
+            <div className="home-container">
+                {/* 🔹 Sección Hero */}
+                <section className="hero">
+                    <div className="hero-content">
+                        <h1>Gestión Inteligente de Tareas</h1>
+                        <p>Un sistema minimalista, potente y diseñado para la productividad.</p>
+                    </div>
+                </section>
 
-        {/* 🔹 Características */}
-        <section className="features">
-          <div className="feature-card">
-            <h2>📅 Planificación</h2>
-            <p>Organiza tus tareas diarias con una interfaz intuitiva y moderna.</p>
-          </div>
-          <div className="feature-card">
-            <h2>🔔 Recordatorios</h2>
-            <p>Recibe notificaciones para no olvidar ninguna tarea importante.</p>
-          </div>
-          <div className="feature-card">
-            <h2>🔐 Seguridad</h2>
-            <p>Tus datos están protegidos con autenticación segura.</p>
-          </div>
-        </section>
+                {/* 🔹 Sección de Características */}
+                <section className="features">
+                    <div className="feature-card">
+                        <h2>🚀 Rápido</h2>
+                        <p>Sin distracciones, sin complicaciones. Solo productividad.</p>
+                    </div>
+                    <div className="feature-card">
+                        <h2>🛠️ Personalizable</h2>
+                        <p>Adapta la plataforma a tu flujo de trabajo con opciones flexibles.</p>
+                    </div>
+                    <div className="feature-card">
+                        <h2>🔄 Sincronización</h2>
+                        <p>Accede desde cualquier dispositivo sin perder nada.</p>
+                    </div>
+                </section>
 
-        {/* 🔹 Espaciador para evitar que el Footer se solape */}
-        <div className="spacer"></div>
-      </div>
-    </Layout>
-  );
+                {/* 🔹 Nueva Sección: Experiencia del Usuario */}
+                <section className="experience">
+                    <h2>Flujo de Trabajo Optimizado</h2>
+                    <p>Organiza tus tareas de forma eficiente con una interfaz moderna y fluida.</p>
+                    <div className="experience-box">
+                        <div className="step">
+                            <h3>📝 Crea Tareas</h3>
+                            <p>Registra tus tareas de manera rápida y sencilla.</p>
+                        </div>
+                        <div className="step">
+                            <h3>✅ Márcalas como Completadas</h3>
+                            <p>Haz un seguimiento claro de tu progreso diario.</p>
+                        </div>
+                        <div className="step">
+                            <h3>📊 Analiza tu Productividad</h3>
+                            <p>Obtén métricas sobre tu rendimiento y optimiza tu tiempo.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </Layout>
+    );
 };
 
 export default Home;

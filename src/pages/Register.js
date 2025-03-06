@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../styles/register.css";
+import "../styles/auth.css";
+import Layout from "../components/Layout";
 import { registerUser } from "../services/auth";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
 
 const Register = () => {
     const [formData, setFormData] = useState({ nombre: "", apellido: "", email: "", telefono: "", password: "" });
@@ -28,8 +28,8 @@ const Register = () => {
 
     return (
         <Layout>
-            <div className="register-container">
-                <div className="register-box">
+            <div className="auth-container">
+                <div className="auth-box">
                     <h2>Crear una Cuenta</h2>
                     {error && <p className="error-message">{error}</p>}
                     <form onSubmit={handleSubmit}>

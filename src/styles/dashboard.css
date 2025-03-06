@@ -1,0 +1,160 @@
+/* 🔹 Contenedor Principal */
+.dashboard-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 120px 50px;
+  text-align: center;
+}
+
+/* 🔹 Formulario para agregar tareas */
+.add-task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-task-form input {
+  flex: 0 1 40%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+}
+
+.add-task-form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.add-task-form button {
+  background: linear-gradient(45deg, #00eaff, #007bff);
+  border: none;
+  color: white;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.add-task-form button:hover {
+  background: linear-gradient(45deg, #007bff, #003d80);
+}
+
+/* 🔹 Lista de tareas */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 🔹 Cada tarea */
+.task-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+  transition: 0.3s;
+}
+
+.task-item h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.task-item p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-height: 80px;
+  overflow-y: auto;
+  white-space: pre-wrap; /* Mantiene los saltos de línea */
+  padding-right: 5px;
+}
+
+/* 🔹 Botones dentro de cada tarea */
+.task-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.task-actions button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.task-actions button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 🔹 Estilo para tareas completadas */
+.task-item.completed {
+  background: rgba(0, 255, 0, 0.2);
+  border-left: 5px solid lime;
+}
+
+.add-task-form textarea {
+  flex: 0 1 50%;
+  height: 80px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  resize: none;
+}
+
+.add-task-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.task-item p::-webkit-scrollbar {
+  width: 5px;
+}
+
+.task-item p::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+
+.error-message {
+  background: rgba(255, 0, 0, 0.2);
+  color: #FF4D4D;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Agregar una animación para que desaparezca gradualmente */
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}

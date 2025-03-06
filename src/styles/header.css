@@ -1,42 +1,80 @@
-/* 🔹 Header Estilo Oscuro */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background: #1E1E1E;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-  }
-  
-  /* 🔹 Logo */
-  .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #E0E0E0;
-    text-decoration: none;
-  }
-  
-  /* 🔹 Links de navegación */
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    font-size: 1rem;
-    color: #BBBBBB;
-    padding: 8px 15px;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .nav-links a:hover {
-    background: #E0E0E0;
-    color: #1E1E1E;
-  }
-  
+/* 🔹 Estilo General del Header */
+.glass-header {
+  display: flex ;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1100px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+/* 🔹 Logo */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00eaff, #007bff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 🔹 Links de Navegación */
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+/* 🔹 Botón de Registro */
+.register-btn {
+  background: linear-gradient(45deg, #00eaff, #007bff);
+  padding: 10px 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.register-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #007bff, #00eaff);
+}
+
+/* 🔹 Botón de Cerrar Sesión */
+.logout-btn {
+  background: linear-gradient(45deg, #ff4d4d, #ff0000);
+  padding: 10px 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #ff0000, #cc0000);
+}
