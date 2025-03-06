@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api/tasks";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 // 📌 **Obtener todas las tareas**
 export const getTasks = async (token) => {
@@ -29,7 +29,7 @@ export const createTask = async (taskData, token) => {
 // 📌 **Actualizar una tarea**
 export const updateTask = async (taskId, updatedData, token) => {
     try {
-        const response = await axios.put(`${API_URL}/${taskId}`, updatedData, {
+        const response = await axios.put(`${API_URL}/tasks/${taskId}`, updatedData, {
             headers: { Authorization: `Bearer ${token}` }
         });
         return response.data;
@@ -41,7 +41,7 @@ export const updateTask = async (taskId, updatedData, token) => {
 // 📌 **Eliminar una tarea**
 export const deleteTask = async (taskId, token) => {
     try {
-        await axios.delete(`${API_URL}/${taskId}`, {
+        await axios.delete(`${API_URL}/tasks/${taskId}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         return { message: "Tarea eliminada correctamente." };
