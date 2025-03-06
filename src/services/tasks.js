@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api/task
 // 📌 **Obtener todas las tareas**
 export const getTasks = async (token) => {
     try {
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(`${API_URL}/tasks`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         return response.data;
@@ -17,7 +17,7 @@ export const getTasks = async (token) => {
 // 📌 **Crear una nueva tarea**
 export const createTask = async (taskData, token) => {
     try {
-        const response = await axios.post(API_URL, taskData, {
+        const response = await axios.post(`${API_URL}/tasks`, taskData, {
             headers: { Authorization: `Bearer ${token}` }
         });
         return response.data;
