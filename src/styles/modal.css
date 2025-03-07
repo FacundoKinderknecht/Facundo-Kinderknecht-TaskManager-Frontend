@@ -1,0 +1,121 @@
+/* 🔹 Fondo Oscuro del Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🔹 Contenedor del Modal */
+.modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
+    width: 30%;
+    max-width: 90%;
+    min-height: 20%;
+    text-align: center;
+}
+
+/* 🔹 Campos del Modal */
+.modal-content input,
+.modal-content textarea {
+    padding: 2%;
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+}
+
+.modal-content textarea{
+    min-height: 400px;
+}
+
+/* 🔹 Botones */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* 🔹 Botón Guardar */
+.modal-buttons button:first-child {
+    background: linear-gradient(45deg, #00eaff, #007bff);
+    color: white;
+}
+
+.modal-buttons button:first-child:hover {
+    background: linear-gradient(45deg, #007bff, #003d80);
+}
+
+/* 🔹 Botón Cancelar */
+.cancel-btn {
+    background: linear-gradient(45deg, #ff4d4d, #ff0000);
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+}
+
+/* 🔹 Botón para abrir el modal de nueva tarea */
+.add-task-btn {
+    background: linear-gradient(45deg, #00eaff, #007bff);
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    margin: 20px auto;
+}
+
+.add-task-btn:hover {
+    background: linear-gradient(45deg, #007bff, #003d80);
+    transform: scale(1.05);
+}
+
+
+/* 🔹 Estilos para el modal de confirmación */
+.modal-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* 🔹 Botón de eliminar en el modal */
+.delete-btn {
+    background: linear-gradient(45deg, #ff4d4d, #ff0000);
+    color: white;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    transform: scale(1.05);
+}
