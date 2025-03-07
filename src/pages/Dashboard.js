@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Importamos navegación
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 import Layout from "../components/Layout";
 import { getTasks, createTask, updateTask, deleteTask } from "../services/tasks";
 import EditTaskModal from "../components/EditTaskModal";
 import AddTaskModal from "../components/AddTaskModal";
-import ConfirmDeleteModal from "../components/ConfirmDeleteModal"; // Importamos el modal de confirmación
-import { useCallback } from "react";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal";
 
 const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
@@ -15,18 +14,17 @@ const Dashboard = () => {
     const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
     const [taskToDelete, setTaskToDelete] = useState(null);
 
-    const navigate = useNavigate(); // Inicializamos la navegación
+    const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
-    // Si no hay token, redirigir al login con un mensaje
+    // Si el usuario no está logueado, redirigir al Home sin mensaje
     useEffect(() => {
         if (!token) {
-            alert("Debes iniciar sesión para acceder al Dashboard.");
-            navigate("/login");
+            navigate("/");
         }
     }, [token, navigate]);
 
-    // Función para cargar las tareas
+    // Cargar tareas desde el backend
     const loadTasks = useCallback(async () => {
         try {
             const data = await getTasks(token);
@@ -34,13 +32,14 @@ const Dashboard = () => {
         } catch (err) {
             setError(err.message || "Error al cargar tareas.");
         }
-    }, [token]); // Se ejecuta solo si `token` cambia
+    }, [token]);
 
+    // Cargar las tareas al montar el componente
     useEffect(() => {
-        if (!token) {
-            navigate("/");
+        if (token) {
+            loadTasks();
         }
-    }, [token, navigate]);
+    }, [token, loadTasks]);
 
     const handleAddTask = async (taskData) => {
         setError("");
@@ -72,7 +71,7 @@ const Dashboard = () => {
     const handleDeleteTask = async (taskId) => {
         try {
             await deleteTask(taskId, token);
-            setTaskToDelete(null); // Ahora el modal se cierra después de eliminar
+            setTaskToDelete(null);
             loadTasks();
         } catch (err) {
             setError(err.message || "Error al eliminar tarea.");
