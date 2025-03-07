@@ -44,13 +44,20 @@ const Dashboard = () => {
 
     // Agregar una nueva tarea desde el modal
     const handleAddTask = async (taskData) => {
+        const newTask = { ...taskData, _id: Date.now().toString(), completed: false };
+    
+        // 🔹 1. Agregar la tarea de inmediato
+        setTasks((prevTasks) => [newTask, ...prevTasks]);
+    
         try {
             await createTask(taskData, token);
-            loadTasks(); // Recargar las tareas después de agregar una nueva
+            loadTasks(); // Recargar solo si es necesario
         } catch (err) {
             setError(err.message || "Error al crear tarea.");
+            loadTasks(); // 🔹 Si hay error, recargar las tareas desde el backend
         }
     };
+    
 
     // Marcar una tarea como completada o pendiente
     const handleCompleteTask = async (taskId, completed) => {
@@ -64,24 +71,36 @@ const Dashboard = () => {
 
     // Eliminar una tarea después de confirmar
     const handleDeleteTask = async (taskId) => {
+        // 🔹 1. Eliminar la tarea de inmediato
+        setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
+    
         try {
             await deleteTask(taskId, token);
-            setTaskToDelete(null); // Cierra el modal después de eliminar
-            loadTasks(); // Recargar las tareas
         } catch (err) {
             setError(err.message || "Error al eliminar tarea.");
+            loadTasks(); // 🔹 Si hay error, recargar las tareas desde el backend
         }
     };
+    
 
     // Guardar cambios de edición desde el modal
     const handleSaveTask = async (taskId, updatedTask) => {
+        // 🔹 1. Actualizar la UI antes de esperar la respuesta del backend
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task._id === taskId ? { ...task, ...updatedTask } : task
+            )
+        );
+    
+        // 🔹 2. Hacer la petición al backend
         try {
             await updateTask(taskId, updatedTask, token);
-            setSelectedTask(null); // Cierra el modal
-            loadTasks(); // Recargar la lista de tareas
         } catch (err) {
             setError(err.message || "Error al actualizar tarea.");
+            loadTasks(); // 🔹 Si falla, recargar la lista de tareas
         }
+    
+        setSelectedTask(null); // Cierra el modal
     };
 
     return (
