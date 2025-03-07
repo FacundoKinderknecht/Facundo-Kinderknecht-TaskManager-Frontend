@@ -42,22 +42,25 @@ const Dashboard = () => {
         }
     };
 
-    // Agregar una nueva tarea desde el modal
+    // Agregar una nueva tarea desde el modal (esperando la respuesta del backend)
     const handleAddTask = async (taskData) => {
-        const newTask = { ...taskData, _id: Date.now().toString(), completed: false };
-    
-        // 🔹 1. Agregar la tarea de inmediato
-        setTasks((prevTasks) => [newTask, ...prevTasks]);
-    
+        setError("");
+
+        // Validar que los campos no estén vacíos
+        if (!taskData.title.trim() || !taskData.description.trim()) {
+            setError("Por favor, completa todos los campos.");
+            setTimeout(() => setError(""), 4000);
+            return;
+        }
+
         try {
             await createTask(taskData, token);
-            loadTasks(); // Recargar solo si es necesario
+            loadTasks(); // Recargar la lista solo cuando el backend confirme la creación
         } catch (err) {
             setError(err.message || "Error al crear tarea.");
-            loadTasks(); // 🔹 Si hay error, recargar las tareas desde el backend
+            setTimeout(() => setError(""), 4000);
         }
     };
-    
 
     // Marcar una tarea como completada o pendiente
     const handleCompleteTask = async (taskId, completed) => {
@@ -71,36 +74,34 @@ const Dashboard = () => {
 
     // Eliminar una tarea después de confirmar
     const handleDeleteTask = async (taskId) => {
-        // 🔹 1. Eliminar la tarea de inmediato
-        setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
-    
         try {
             await deleteTask(taskId, token);
+            setTaskToDelete(null); // Ahora el modal se cierra después de eliminar
+            loadTasks(); // Recargar la lista de tareas después de confirmar eliminación
         } catch (err) {
             setError(err.message || "Error al eliminar tarea.");
-            loadTasks(); // 🔹 Si hay error, recargar las tareas desde el backend
         }
     };
-    
 
-    // Guardar cambios de edición desde el modal
+    // Guardar cambios de edición desde el modal (esperando la respuesta del backend)
     const handleSaveTask = async (taskId, updatedTask) => {
-        // 🔹 1. Actualizar la UI antes de esperar la respuesta del backend
-        setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-                task._id === taskId ? { ...task, ...updatedTask } : task
-            )
-        );
-    
-        // 🔹 2. Hacer la petición al backend
+        setError("");
+
+        // Validar que los campos no estén vacíos
+        if (!updatedTask.title.trim() || !updatedTask.description.trim()) {
+            setError("Por favor, completa todos los campos.");
+            setTimeout(() => setError(""), 4000);
+            return;
+        }
+
         try {
             await updateTask(taskId, updatedTask, token);
+            loadTasks(); // Recargar la lista solo cuando el backend confirme la actualización
+            setSelectedTask(null); // Cierra el modal después de recibir la respuesta
         } catch (err) {
             setError(err.message || "Error al actualizar tarea.");
-            loadTasks(); // 🔹 Si falla, recargar la lista de tareas
+            setTimeout(() => setError(""), 4000);
         }
-    
-        setSelectedTask(null); // Cierra el modal
     };
 
     return (
@@ -112,7 +113,7 @@ const Dashboard = () => {
                 <button className="add-task-btn" onClick={() => setIsAddTaskModalOpen(true)}>+ Nueva Tarea</button>
 
                 {/* Mensaje de error si ocurre un problema */}
-                {error && <p className="error-message fade-out">{error}</p>}
+                {error && <p className="error-message">{error}</p>}
 
                 {/* Lista de tareas */}
                 <div className="task-list">
