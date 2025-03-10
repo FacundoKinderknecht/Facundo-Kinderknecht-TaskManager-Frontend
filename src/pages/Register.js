@@ -5,21 +5,61 @@ import { registerUser } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const [formData, setFormData] = useState({ nombre: "", apellido: "", email: "", telefono: "", password: "" });
+    const [formData, setFormData] = useState({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        password: ""
+    });
+
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // Manejar cambios en los inputs
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        // Validación de número de teléfono (solo dígitos)
+        if (name === "telefono" && !/^\d*$/.test(value)) return;
+
+        // Límite de caracteres en cada campo
+        const maxLengths = {
+            nombre: 50,
+            apellido: 50,
+            email: 100,
+            telefono: 15,
+            password: 30
+        };
+
+        if (value.length > maxLengths[name]) return;
+
+        setFormData({ ...formData, [name]: value });
     };
 
-    // Manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
-        setLoading(true);
+
+        // Validaciones antes de enviar
+        if (!formData.nombre || !formData.apellido || !formData.email || !formData.telefono || !formData.password) {
+            setError("Todos los campos son obligatorios.");
+            return;
+        }
+
+        if (formData.telefono.length < 8) {
+            setError("El teléfono debe tener al menos 8 dígitos.");
+            return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            setError("Correo electrónico no válido.");
+            return;
+        }
+
+        if (formData.password.length < 6) {
+            setError("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
 
         try {
             const data = await registerUser(formData);
@@ -27,9 +67,6 @@ const Register = () => {
             navigate("/dashboard");
         } catch (err) {
             setError(err.message || "Error en el registro.");
-            setTimeout(() => setError(""), 4000); // Ocultar error después de 4 segundos
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -45,7 +82,7 @@ const Register = () => {
                         <input type="email" name="email" placeholder="Correo Electrónico" value={formData.email} onChange={handleChange} required />
                         <input type="text" name="telefono" placeholder="Teléfono" value={formData.telefono} onChange={handleChange} required />
                         <input type="password" name="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} required />
-                        <button type="submit" disabled={loading}>{loading ? "Procesando..." : "Registrarse"}</button>
+                        <button type="submit">Registrarse</button>
                     </form>
                     <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
                 </div>
